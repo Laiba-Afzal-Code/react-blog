@@ -34,6 +34,7 @@ export default function Write() {
   };
   return (
     <>
+        <div className="writeback"><img src="https://cdn.shopify.com/s/files/1/0306/6419/6141/articles/coding_languages.png?v=1619126283" alt="aboutback" /></div>
       <div className="write">
         {file && (
 

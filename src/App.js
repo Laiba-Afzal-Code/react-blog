@@ -12,6 +12,7 @@ import Contact from './pages/contact/Contact';
 import { useContext } from 'react';
 import { Context } from './context/Context';
 import Footer from './components/footer/Footer';
+import About from './pages/about/About';
 
 function App() {
   const {user} = useContext(Context);
@@ -28,6 +29,7 @@ function App() {
       <Route exact path="/login" element={user ? <Home/> : <Login /> }></Route>
       <Route exact path="/register" element={ user ? <Navigate to={"/"}/> : <Register/>  }></Route>
       <Route exact path="/contact" element={ user ? <Contact/> : <Register/>  }></Route>
+      <Route exact path="/about" element={ user ? <About/> : <Register/>  }></Route>
       </Routes>
       <Footer/>
       </BrowserRouter>
