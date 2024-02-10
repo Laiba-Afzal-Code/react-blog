@@ -1,31 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import "./post.css";
+import { Link } from "react-router-dom";
 
-export default function Post() {
+export default function Post({post}) {
   return (
     <>
       <div className="post">
-        <img
-          src="https://wallpapers.com/images/hd/coding-background-9izlympnd0ovmpli.jpg"
+        {post.img && (
+
+          <img
+          src={post.img}
           alt="Post"
           className="postImg"
-        />
+          />
+          )}
         <div className="postinfo">
           <div className="postCats">
-            <span className="postCat">Life</span>
-            <span className="postCat">Music</span>
+            {post.cats.map((c)=>(
+              <span className="postCat">{c.cats}</span>
+            ))}
           </div>
-          <span className="postTitle">Website of content with coding</span>
+          <Link to={`/post/${post._id}`} className="link">
+          <span className="postTitle">{post.title}</span>
+          </Link>
           <hr />
-          <span className="postDate">1 hour ago</span>
+          <span className="postDate">{new Date(post.createdAt).toDateString()}</span>
           <p className="postDocs">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis qui
-            modi at, assumenda incidunt esse. Blanditiis, dolorum. Repudiandae
-            debitis deserunt excepturi, quos eos nobis blanditiis, odio officia
-            quam fuga similique? Lorem ipsum dolor sit amet consectetur
-            adipisicing elit. Nobis qui modi at, assumenda incidunt esse.
-            Blanditiis, dolorum. Repudiandae debitis deserunt excepturi, quos
-            eos nobis blanditiis, odio officia quam fuga similique?
+           {post.desc}
           </p>
         </div>
       </div>

@@ -42,6 +42,10 @@
     border-radius: 12px;
     font-weight: 600;
 }
+.registerBtn:disabled{
+        cursor: not-allowed;
+        background-color: gray;
+}
 
 .registerBtn:hover {
     background-color: gray;

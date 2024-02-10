@@ -7,11 +7,14 @@ import Register from './pages/register/Register';
 import Setting from './pages/setting/Setting';
 import Single from './pages/single/Single';
 import Write from './pages/write/Write';
-import { BrowserRouter, Routes, Route, } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate} from "react-router-dom";
 import Contact from './pages/contact/Contact';
+import { useContext } from 'react';
+import { Context } from './context/Context';
+import Footer from './components/footer/Footer';
 
 function App() {
-  const user = true;
+  const {user} = useContext(Context);
   return (
     <>
     <div className="App">
@@ -21,11 +24,12 @@ function App() {
       <Route exact path="/" element={user ?  <Home /> : <Register/>}></Route>
       <Route exact path="/write" element={user ?  <Write /> : <Register/> }></Route>
       <Route exact path="/setting" element={ user ? <Setting /> : <Register/> }></Route>
-      <Route exact path="/single" element={ <Single />  }></Route>
+      <Route exact path="/post/:postId" element={ <Single />  }></Route>
       <Route exact path="/login" element={user ? <Home/> : <Login /> }></Route>
-      <Route exact path="/register" element={ user ? <Home/> : <Register/>  }></Route>
+      <Route exact path="/register" element={ user ? <Navigate to={"/"}/> : <Register/>  }></Route>
       <Route exact path="/contact" element={ user ? <Contact/> : <Register/>  }></Route>
       </Routes>
+      <Footer/>
       </BrowserRouter>
     </div>
     </>

@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./topbar.css";
 import { Link } from "react-router-dom";
+import { Context } from "../../context/Context";
+
 
 export default function Topbar() {
-  const user = true;
+  const { user, dispatch } = useContext(Context);
+  const hendleLogout = () => {
+    dispatch({ type: "LOGOUT" });
+  };
+
   return (
     <>
       <div className="topbar">
@@ -23,28 +29,56 @@ export default function Topbar() {
         </div>
         <div className="topCenter">
           <ul className="topList">
-            <li className="topListItem "><Link className="link" to="/">HOME</Link></li>
-            <li className="topListItem"><Link className="link" to="/write">WRITE</Link></li>
-            <li className="topListItem"><Link className="link" to="/single">BLOG</Link></li>
-            <li className="topListItem"><Link className="link" to="/contact">CONTACT</Link></li>
-            <li className="topListItem"><Link className="link" to="/login">{user && "LOGOUT"}</Link></li>
+            <li className="topListItem ">
+              <Link className="link" to="/">
+                HOME
+              </Link>
+            </li>
+            <li className="topListItem">
+              <Link className="link" to="/write">
+                WRITE
+              </Link>
+            </li>
+            <li className="topListItem">
+              <Link className="link" to="/about">
+                ABOUT
+              </Link>
+            </li>
+            <li className="topListItem">
+              <Link className="link" to="/contact">
+                CONTACT
+              </Link>
+            </li>
+            <li className="topListItem">
+              <Link className="link" to="/login" onClick={hendleLogout}>
+                {user && "LOGOUT"}
+              </Link>
+            </li>
           </ul>
         </div>
         <div className="topRight">
           {user ? (
- <img
- src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSL-_vFu0MKdOmb1roApAoaHrqVrDpHeRPEcw&usqp=CAU"
- alt="profile"
- className="profileimg"
-/>
+            <Link to={"/setting"}>
+              <img
+                src={user.profilePicture}
+                alt="profile"
+                className="profileimg"
+              />
+            </Link>
           ) : (
             <ul className="topList">
-              <li className="topListItem"><Link className="link topListItem" to="/login">LogIn</Link></li>
-            
-            <Link className="link topListItem" to="/register">Register</Link>
+              <li className="topListItem">
+                <Link className="link topListItem" to="/login">
+                  LogIn
+                </Link>
+              </li>
+
+              <Link className="link topListItem" to="/register">
+                Register
+              </Link>
             </ul>
-            )}
-         
+          )}
+
           <i className="fa-solid fa-magnifying-glass"></i>
         </div>
       </div>
